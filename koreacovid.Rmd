@@ -1,7 +1,7 @@
 ---
 title: "Initial Korean covid 19"
-author: "your name here"
-date: "todays date"
+author: Sarah Castellon
+date: October 10 2024
 output:
   html_document: default
   pdf_document: default
