@@ -24,32 +24,68 @@ mutate(across(where(is.character), as.factor))
 Some of the data was uncoded for sex - sex must be just male or female
 77 of the data entries were coded sex  as blank, so we omit these.
 state of a patient must be died or alive - we adjust that as well   
+
+# Methods  
+
+$H_0$ There is no difference in dying depending on sex  
+$H_A$ There is a difference in dying depending on sex
+
+The data is from Korea in 2022  
+
+result~sex
+this is categorical ~ categorical 
+We will use the helper file cat~cat 
   
-# Your Question - Is dying independent of sex?
-
-
-
+# is dying of covid independent of sex?
 
 
 
 ## Graphical results - use ggplot commands to do this  
 
+```{r}
+barchartGC(~result + Sex,data=kRdata)
+barchartGC(~result + Sex,data=kRdata, type="percent")
+
+```
+
+The bar chart show that more males died than women. 
 
 
-  
-
-
-
-
-
-  
 ## Numerical results
 
+```{r}
+table1 <- xtabs(~result + Sex, data=kRdata)
+rowPerc(table1)
+colPerc(table1)
+```
+
+Among the people who died  there was 64% of men who died and 36% of women who died.  
 
 ## Inferential results 
 
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
 
+the p value for the Chi squared test is p-value = 0.001 and the Fisher exact test has a p-value of .00009. The odd of the Fisher test also states that men are 2.3 more acceptable of dying from covid 19. Therefore since both the p-values are lower then 0.05 we reject the null hypothesis. 
 
+## Conclusions  
 
-## Conclusions
+Question: is dying of covid independent of sex?
 
+$H_0$ There is no difference in dying depending on sex  
+$H_A$ There is a difference in dying depending on sex
+
+The data is from Korea in 2022  
+
+result~sex
+this is categorical ~ categorical 
+We will use the helper file cat~cat 
+
+The data is from Korea in 2022  
+
+We reject the null hypothesis since, 
+The bar chart show that more males died than women.   
+The numerical results show the p value for the Chi squared test is p-value is  0.001 and the Fisher exact test has a p-value of .00009. The odd of the Fisher test also states that men are 2.3 more acceptable of dying from covid 19. Therefore since both the p-values are lower then 0.05 we reject the null hypothesis. 
